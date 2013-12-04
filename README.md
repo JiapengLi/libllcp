@@ -9,6 +9,8 @@
 
 ## Usage
 
+	***libnfc is needed.***
+
 ### Download
 
 	git clone https://github.com/JiapengLi/libllcp.git
