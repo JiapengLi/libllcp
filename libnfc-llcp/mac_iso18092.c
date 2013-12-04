@@ -353,7 +353,7 @@ mac_link_deactivate(struct mac_link *link, intptr_t reason)
   assert(link);
   assert((link->exchange_pdus_thread == NULL) || (*link->exchange_pdus_thread != pthread_self()));
 
-  MAC_LINK_LOG(LLC_PRIORITY_INFO, "MAC Link deactivation requested (reason: %d)", reason);
+  MAC_LINK_LOG(LLC_PRIORITY_ALERT, "MAC Link deactivation requested (reason: %d)", reason);
 
   if (!link->exchange_pdus_thread) {
     MAC_LINK_MSG(LLC_PRIORITY_WARN, "MAC Link already stopped");
