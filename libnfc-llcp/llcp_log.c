@@ -68,3 +68,41 @@ llcp_log_log(char *category, int priority, char *format, ...)
   printf("\n");
   fflush(stdout);
 }
+
+void llc_log_print_buf_hex(char *s, const uint8_t *buf, int len)
+{
+  int i;
+  printf("\033[35;1m%s", s);
+  for(i=0; i<len; i++){
+    printf("%02X ", buf[i]);
+  }
+  printf("\033[0m\n");
+}
+
+void llc_log_print_pdu_header(const uint8_t *buf)
+{
+  const char ptypeName [][16]={
+    "SYMM",
+    "PAX",
+    "AGF",
+    "UI",
+    "CONNECT",
+    "DISC",
+    "CC",
+    "DM",
+    "FRMR",
+    "SNL",
+    "RESERVED",
+    "RESERVED",
+    "I",
+    "RR",
+    "RNR",
+    "RESERVED",
+  };
+  uint8_t dsap, ptype, ssap;
+  dsap = buf[0]>>2;
+  ptype = ((buf[0]&0x03)<<2) | ((buf[1]&0xC0)>>6);
+  ssap = buf[1]&0x3F;
+  printf("\033[36;1mDSAP: %02X, PTYPE: %s(%02X), SSAP: %02X\033[0m\n", dsap, ptypeName[ptype], ptype, ssap);
+
+}

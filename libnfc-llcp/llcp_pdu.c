@@ -135,12 +135,18 @@ pdu_pack(const struct pdu *pdu, uint8_t *buffer, size_t len)
   for (size_t i = 0; i < pdu->information_size; i++)
     buffer[n++] = pdu->information[i];
 
+  llc_log_print_pdu_header(buffer);
+  llc_log_print_buf_hex("PDU-PACK:\t", buffer, n);
+
   return n;
 }
 
 struct pdu *
 pdu_unpack(const uint8_t *buffer, size_t len) {
   struct pdu *pdu;
+
+  llc_log_print_pdu_header(buffer);
+  llc_log_print_buf_hex("PDU-UNPACK:\t", buffer, len);
 
   if ((pdu = malloc(sizeof *pdu))) {
     pdu->dsap = buffer[0] >> 2;

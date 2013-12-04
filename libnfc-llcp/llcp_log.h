@@ -24,9 +24,13 @@
 
 #ifdef DEBUG
 
+#include <stdint.h>
+
 int	 llcp_log_init(void);
 int	 llcp_log_fini(void);
-void	 llcp_log_log(char *category, int priority, char *format, ...);
+void llcp_log_log(char *category, int priority, char *format, ...);
+void llc_log_print_buf_hex(char *s, const uint8_t *buf, int len);
+void llc_log_print_pdu_header(const uint8_t *buf);
 
 #define LLC_PRIORITY_FATAL  0
 #define LLC_PRIORITY_ALERT  1
@@ -45,6 +49,8 @@ void	 llcp_log_log(char *category, int priority, char *format, ...);
 #define llcp_log_msg(category, priority, message) do {} while (0)
 #define llcp_log_set_appender(category, appender) do {} while (0)
 #define llcp_log_log(category, priority, format, ...) do {} while (0)
+#define llc_log_print_buf_hex(s, buf, len) do {} while (0)
+#define llc_log_print_pdu_header(buf) do {} while (0)
 
 #define LLC_PRIORITY_FATAL  8
 #define LLC_PRIORITY_ALERT  7
