@@ -42,7 +42,7 @@ void llc_log_print_pdu_header(const uint8_t *buf);
 #define LLC_PRIORITY_DEBUG  7
 #define LLC_PRIORITY_TRACE  8
 
-#else
+#else /* DEBUG */
 
 #define llcp_log_init() (0)
 #define llcp_log_fini() (0)
@@ -62,6 +62,6 @@ void llc_log_print_pdu_header(const uint8_t *buf);
 #define LLC_PRIORITY_DEBUG  1
 #define LLC_PRIORITY_TRACE  0
 
-#endif
+#endif /* DEBUG */
 
 #endif
